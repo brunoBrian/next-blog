@@ -24,7 +24,10 @@ module.exports = {
     indent: ['error', 2],
     'react/react-in-jsx-scope': 'off',
     'prettier/prettier': 'error',
-    'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
+    'react/jsx-filename-extension': [
+      'warn',
+      { extensions: ['.jsx', '.js', '.tsx', '.ts'] },
+    ],
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
     'react/prop-types': [2, { ignore: ['children'] }],
@@ -33,6 +36,7 @@ module.exports = {
     'no-param-reassign': [2, { props: false }],
     'no-underscore-dangle': 'off',
     'react/forbid-prop-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import-helpers/order-imports': [
       'error',
       {
