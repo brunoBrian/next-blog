@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
 import { SITE_NAME } from '../../config/app';
-import { Container } from './style';
+import * as Styled from './styles';
 
 export const Header = () => {
   return (
-    <Container>
+    <Styled.Container>
       <Link href="/">
         <a>{SITE_NAME}</a>
       </Link>
-    </Container>
+    </Styled.Container>
   );
 };
