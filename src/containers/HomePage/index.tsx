@@ -1,4 +1,4 @@
-import { Header, MainContainer, PostCard } from '../../components';
+import { Footer, Header, MainContainer, PostCard } from '../../components';
 import { PostData } from '../../types/posts';
 import { Container } from './styles';
 
@@ -22,6 +22,7 @@ export default function HomePage({ posts }: HomePageProps) {
           ))}
         </Container>
       </MainContainer>
+      <Footer />
     </>
   );
 }

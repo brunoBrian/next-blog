@@ -18,6 +18,8 @@ export async function getStaticProps() {
 }
 
 const getAllPosts = async () => {
-  const posts = await PostService.getAllPosts('posts');
+  const posts = await PostService.getAllPosts(
+    '_sort=id:desc&_start=0&_limit=2',
+  );
   return posts;
 };
