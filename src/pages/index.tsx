@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-
-import env from '../config/environment.json';
+import HomePage from '../containers/HomePage';
 import PostService from '../services/post';
 import { PostData } from '../types/posts';
 
@@ -9,13 +7,7 @@ export type HomeProps = {
 };
 
 export default function Home({ posts }: HomeProps) {
-  return (
-    <div>
-      {posts.map((post) => (
-        <h1 key={post.slug}>{post.title}</h1>
-      ))}
-    </div>
-  );
+  return <HomePage posts={posts} />;
 }
 
 export async function getStaticProps() {
