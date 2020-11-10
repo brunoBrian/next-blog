@@ -13,13 +13,13 @@ export default function Home({ posts }: HomeProps) {
 export async function getStaticProps() {
   const post = await getAllPosts();
   return {
-    props: { posts: post.data },
+    props: { posts: post },
   };
 }
 
 const getAllPosts = async () => {
   const posts = await PostService.getAllPosts(
-    '_sort=id:desc&_start=0&_limit=2',
+    '_sort=id:desc&_start=0&_limit=20',
   );
-  return posts;
+  return posts.data;
 };
