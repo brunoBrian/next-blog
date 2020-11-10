@@ -1,14 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
+import { Post } from '../../containers/Post';
 import PostService from '../../services/post';
 import { PostData } from '../../types/posts';
+import { markdownToHtml } from '../../utils/markdownToHtml';
 
 export type DynamicPostProps = {
   post: PostData;
 };
 
 const DynamicPost = ({ post }: DynamicPostProps) => {
-  return <p>{post.title}</p>;
+  return <Post post={post} />;
 };
 
 export default DynamicPost;
@@ -31,9 +33,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await PostService.getPost(ctx.params.slug);
+  const content = await markdownToHtml(data[0].content);
 
   return {
-    props: { post: data[0] },
+    props: { post: { ...data[0], content } },
     // revalidate: 5,
   };
 };
