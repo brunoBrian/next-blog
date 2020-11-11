@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy:static": "next build && next export"
+    "deploy:static": "next build && next export",
+    "postbuild": "next-on-netlify"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.4",
@@ -16,6 +17,7 @@
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "next": "10.0.1",
+    "next-on-netlify": "^2.6.0",
     "prettier": "^2.1.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
