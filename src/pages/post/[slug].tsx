@@ -1,4 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Error from 'next/error';
+import { useRouter } from 'next/router';
 
 import { Post } from '../../containers/Post';
 import PostService from '../../services/post';
@@ -10,6 +12,13 @@ export type DynamicPostProps = {
 };
 
 const DynamicPost = ({ post }: DynamicPostProps) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
+
+  if (router.isFallback) return <div>Carregando...</div>;
+
+  if (!post) <Error statusCode={404} />;
+
   return <Post post={post} />;
 };
 
@@ -27,16 +36,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await PostService.getPost(ctx.params.slug);
+
+  if (!data.length) return data;
+
   const content = await markdownToHtml(data[0].content);
 
   return {
     props: { post: { ...data[0], content } },
-    // revalidate: 5,
+    // revalidate: 6000,
   };
 };
